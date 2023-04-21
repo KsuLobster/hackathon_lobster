@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"wavelet"},{"l":"すべてのパッケージ","u":"allpackages-index.html"}];updateSearchResults();

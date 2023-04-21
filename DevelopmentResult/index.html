@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="keywords" content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming">
+<meta name="keywords" content="Tatsumi Kazuto,Okabe Tatsunori,Hino Takahiro,Omori Hiroto,Hamano Yodai,Tanaka Shotaro,Kawasaki Taiki,Kobayashi Shun,Project wave,G1,Java,Program,Object,Oriented,Programming">
+<meta name="description" content="プロジェクトのホームページ">
+<meta name="author" content="Tatsumi Kazuto,Okabe Tatsunori,Hino Takahiro,Omori Hiroto,Hamano Yodai,Tanaka Shotaro,Kawasaki Taiki,Kobayashi Shun">
+<link rev="made" href="index.html">
+<link rel="index" href="index.html">
+<link rel="icon" href="../favicon.ico">
+<style type="text/css">
+<!--
+body {
+  background-color : #ffffff;
+  margin : 20px;
+  padding : 10px;
+  font-family : serif;
+  font-size : 10pt;
+}
+a {
+  text-decoration : underline;
+  color : #000000;
+}
+a:link {
+  background-color : #ffddbb;
+}
+a:visited {
+  background-color : #ccffcc;
+}
+a:hover {
+  background-color : #dddddd;
+}
+a:active {
+  background-color : #dddddd;
+}
+div.belt {
+  background-color : #eeeeee;
+  padding : 0px 4px;
+}
+div.belt-yellow {
+  background-color : #ffffcc;
+  padding : 0px 4px;
+}
+div.belt-blue {
+  background-color : #ddeeff;
+  padding : 0px 4px;
+}
+div.right-small {
+  text-align : right;
+  font-size : 8pt;
+}
+img.border {
+  border-width : 1px;
+  border-color : #000000;
+  vertical-align : middle;
+}
+img.borderless {
+  border-width : 0px;
+  vertical-align : middle;
+}
+p.belt {
+  background-color : #ffeedd;
+  padding : 4px 8px;
+}
+p.belt-blue {
+  background-color : #ddeeff;
+  padding : 4px 8px;
+}
+pre.belt {
+  background-color : #ddeeff;
+  padding : 4px 8px;
+}
+pre.belt-yellow {
+  background-color : #ffffcc;
+  padding : 4px 8px;
+}
+table {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  font-family : serif;
+  font-size : 10pt;
+}
+table.profile {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  font-family : serif;
+  font-size : 10pt;
+  margin-top : 8px;
+  margin-left : 8px;
+  margin-right : 8px;
+  margin-bottom : 8px;
+}
+table.belt {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  background-color : #ffeedd;
+  padding : 0px 0px;
+  width : 100%;
+}
+table.content {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 2px 4px;
+}
+table.font-fixed {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 2px 4px;
+  font-family : monospace;
+}
+table.nest {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 0px 0px;
+}
+td {
+  padding : 0px 0px;
+  vertical-align : middle;
+}
+td.center {
+  text-align : center;
+}
+td.center-half {
+  text-align : center;
+  width : 50%;
+  font-size : 8pt;
+}
+td.center-small {
+  text-align : center;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.center-small-nopadding {
+  text-align : center;
+  font-size : 8pt;
+  padding : 0px 0px;
+}
+td.center-white {
+  text-align : center;
+  background-color : #ffffff;
+}
+td.center-small-white {
+  text-align : center;
+  font-size : 8pt;
+  background-color : #ffffff;
+}
+td.center-border1 {
+  text-align : center;
+  vertical-align : middle;
+  empty-cells : show;
+  border-style : solid;
+  border-width : 1px;
+  border-color : #ffc080;
+  width : 22px;
+  height : 22px;
+}
+td.left-small {
+  text-align : left;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.left-small-white {
+  text-align : left;
+  font-size : 8pt;
+  padding : 0px 4px;
+  background-color : #ffffff;
+}
+td.right-small {
+  text-align : right;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.right-small-white {
+  text-align : right;
+  font-size : 8pt;
+  padding : 0px 4px;
+  background-color : #ffffff;
+}
+th {
+  padding : 0px 0px;
+  vertical-align : middle;
+}
+#menu {
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
+  height: 32px;
+}
+#menu ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-align: center;
+  clear: both;
+}
+#menu li {
+  margin: 0px 5px 0px 0px;
+  padding: 0px;
+  float: left;
+}
+#menu a {
+  display: block;
+  padding: 2px 4px;
+  text-decoration: none;
+  margin: 0px;
+  font-weight: bold;
+  background: #FFFFFF;
+  color: #333333;
+  border: 1px solid #666666;
+}
+#menu a:hover {
+  display: block;
+  padding: 2px 4px;
+  border-bottom: 1px solid #000000;
+  text-decoration: none;
+  background: #FFCC66;
+}
+#menu .current {
+  background-color: #F45F57;
+  font-weight: bold;
+  color: #FFFFFF;
+  border: 1px solid #333333;
+}
+-->
+</style>
+<title>プロジェクト「ウェーブレット画像処理」開発実績報告書</title>
+</head>
+<body>
+<div id="menu">
+<ul>
+  <li><a href="../index.html">ホーム</a></li>
+  <li><a href="../Requirement/index.html">要求仕様書</a></li>
+  <li><a href="../DevelopmentPlan/index.html">開発計画書</a></li>
+  <li><a href="../BasicDesign/index.html">基本設計書</a></li>
+  <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
+  <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
+  <li><a href="../TestResult/index.html">テスト結果</a></li>
+  <li><a href="../DevelopmentResult/index.html" class="current">開発実績</a></li>
+  <li><a href="../Program/index.html">プログラム</a></li>
+  <li><a href="../Manual/index.html">マニュアル</a></li>
+</ul>
+</div>
+<hr>
+<h2>プロジェクト「ウェーブレット画像処理」開発実績報告書</h2>
+<div class="belt">
+<h3><a name="KaihatsuZisseki">開発実績</a>(進捗状況)</h3>
+</div>
+<p>2022年4月8日(金)から開発を始め、計画より大幅な遅れを取りながらも、2022年7月15日(金)に開発を完了した。実装プログラミング言語としてJavaを採用した。以下に進捗状況を開発実績として示す。</p>
+<p>開発スケジュール通りに作業が進まなかったことや、作業Kのような未着手の作業が残存してしまったことが反省点として挙げられる。</p>
+<h4><a name="All">全体の工程</a></h4>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table class="content" summary="table">
+        <tbody>
+          <tr>
+            <td class="center-small"><a href="images/Development_date.png"><img class="borderless" src="thumbnails/Development_date.png" width="1217" height="257" alt="Development_dateのダウンロード"></a></td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="June">6月の工程</a>(作業内容は開発計画書を参照)</h4>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table class="content" summary="table">
+        <tbody>
+          <tr>
+            <td class="center-small"><a href="images/Gantt_chart_June.png"><img class="borderless" src="thumbnails/Gantt_chart_June.png" width="1070" height="648" alt="Gantt_chart_Juneのダウンロード"></a></td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="July">7月の工程</a>(作業内容は開発計画書を参照)</h4>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table class="content" summary="table">
+        <tbody>
+          <tr>
+            <td class="center-small"><a href="images/Gantt_chart_July.png"><img class="borderless" src="thumbnails/Gantt_chart_July.png" width="1096" height="649" alt="Gantt_chart_Julyのダウンロード"></a></td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="belt">
+<h3><a name="KaihatsuRecord">開発日記</a></h3>
+</div>
+<p>以下にその日の進捗や困難、その他の内容を示す。</p>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="center-padding" abbr="1">日程</th>
+            <th class="center-padding" abbr="2">内容</th>
+          </tr>
+          <tr>
+            <td class="center-padding">04月08日</td>
+            <td class="center-padding">
+              開発メンバーの顔合わせを実施した。<br>
+              各々が保持する技術などを共有し、開発スケジュールの決定や開発体制の構築を行う。<br>
+              要求仕様書を読み込む作業に入る。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">04月15日</td>
+            <td class="center-padding">
+              要求仕様書によって指定された内容を基に、必要な作業内容の洗い出しを行う。<br>
+              ここで確認した作業内容からアロー図、プレシデンス図、データフロー図の作成を開始。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">04月22日</td>
+            <td class="center-padding">
+              先週に引き続き、それぞれの図の作成を行う。<br>
+              作成した図などを基本設計書に示す。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">04月29日</td>
+            <td class="center-padding">
+              基本クラスの作成に着手する。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">05月13日</td>
+            <td class="center-padding">
+              作成した基本クラスを確認し、詳細クラスの作成に着手する。<br>
+              同時並行で状態遷移図の作成も行う。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">05月20日</td>
+            <td class="center-padding">
+              引き続き詳細クラスの作成を行いながら、シーケンス図の作成を行う。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">05月27日</td>
+            <td class="center-padding">
+              引き続き詳細クラスの作成を行う。
+            </td>
+          </tr>
+          <tr>
+            <td class="center-padding">06月03日</td>
+            <td class="center-padding">Controller・View・Modelのプログラムに着手。<br>
+            Controllerは課題とし、Modelはドピュシーの論文とその他を読み計算式を考える。</td>
+          </tr>
+          <tr>
+            <td class="center-padding">06月10日</td>
+            <td class="center-padding">Controller・Viewはプログラム仮完了。Modelは内部の処理を書き始める。<br>
+            Controller・Viewは継承(super)を行い仮の完成とした。問題が生じる度に適宜修正を行う。<br>
+            ウィンドウ構成図の1次元の配置通りの表示と、クリックするとマウスカーソルが十字になるようになった。<br>
+            Modelはドピュシーの論文とその他を読み、1次元の変換式を仮完成させた。</td>
+          </tr>
+          <tr>
+            <td class="center-padding">06月17日</td>
+            <td class="center-padding">Modelは逆計算式に取り掛かる。Generate Imageの作成。<br>
+            Modelの変換式が正しいか判断がつかず、逆計算の式が不明。理解することに手間取っている。<br>
+            Generate Imageは軽く実装を行うもコミットできない状況に。<br>
+            viewに問題が発生したので修正。<br>
+            課題としてProfile・PMDを使用できるように調整。</td>
+          </tr>
+          <tr>
+            <td class="center-padding">06月24日</td>
+            <td class="center-padding">先生のプログラムを参考にプログラムを改変した。<br>
+            PMDやProfileを用いて単体テストや結合テストを実施するためのファイルを作成。<br>
+            プログラムのフォーマットを整理<br>
+            テストクラスを一部実装<br>
+            ウェーブレット変換部分を一部実装</td>
+          </tr>
+          <tr>
+            <td class="center-padding">07月01日</td>
+            <td class="center-padding">一次元のウェーブレット変換を行う部分の実装<br>
+            ウィンドウでそれぞれの係数などを表示することは完了<br>
+            インタラクティブな操作は授業外または次回授業時間内で完成予定<br>
+            発表会の段取りや資料の作成に取り掛かる<br>
+            PMDを実行中<br>
+            次回までにテスト用プログラムの作成を行う予定</td>
+          </tr>
+          <tr>
+            <td class="center-padding">07月08日</td>
+            <td class="center-padding">一次元のインタラクティブな操作機能の実装<br>
+            二次元のインタラクティブな操作機能の実装（逆変換が適切に行われないバグを発見）<br>
+            テストクラスのソースファイルを一部作成<br>
+            発表資料の原稿に着手(20%程度完了)<br>
+            発表資料が80%ほど完成<br>
+            マニュアル等の作成に着手<br>
+            if文やfor文の撤廃に着手</td>
+          </tr>
+          <tr>
+            <td class="center-padding">07月15日</td>
+            <td class="center-padding">発表資料の原稿作成を続行<br>
+            ifやforの撤廃作業を実行<br>
+            プログラム詳細等の作成が完了。発表までに情報の整理や見た目の整頓を行う。</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<div class="right-small">Copyright 2022 Project wave, Updated: 2022/07/21 </div>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="keywords" content="Okabe Tatsunori, Kotani Ryouta, Kawasaki Yuichi, Ito Kazuma, Yosikawa Masaya">
+<meta name="description" content="good-nightのホームページ">
+<meta name="author" content="Okabe Tatsunori, Kotani Ryouta, Kawasaki Yuichi, Ito Kazuma, Yosikawa Masaya">
+<link rev="made" href="index.html">
+<link rel="index" href="index.html">
+<link rel="icon" href="../favicon.ico">
+<style type="text/css">
+<!--
+body {
+  background-color : #ffffff;
+  margin : 20px;
+  padding : 10px;
+  font-family : serif;
+  font-size : 10pt;
+}
+a {
+  text-decoration : underline;
+  color : #000000;
+}
+a:link {
+  background-color : #ffddbb;
+}
+a:visited {
+  background-color : #ccffcc;
+}
+a:hover {
+  background-color : #dddddd;
+}
+a:active {
+  background-color : #dddddd;
+}
+div.belt {
+  background-color : #eeeeee;
+  padding : 0px 4px;
+}
+div.belt-yellow {
+  background-color : #ffffcc;
+  padding : 0px 4px;
+}
+div.belt-blue {
+  background-color : #ddeeff;
+  padding : 0px 4px;
+}
+div.right-small {
+  text-align : right;
+  font-size : 8pt;
+}
+img.border {
+  border-width : 1px;
+  border-color : #000000;
+  vertical-align : middle;
+}
+img.borderless {
+  border-width : 0px;
+  vertical-align : middle;
+}
+img.expression {
+  border-width : 0px;
+  vertical-align : middle;
+  padding : 4px 2px;
+}
+p.belt {
+  background-color : #ffeedd;
+  padding : 4px 8px;
+}
+p.belt-blue {
+  background-color : #ddeeff;
+  padding : 4px 8px;
+}
+pre.belt {
+  background-color : #ddeeff;
+  padding : 4px 8px;
+}
+pre.belt-yellow {
+  background-color : #ffffcc;
+  padding : 4px 8px;
+}
+table {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  font-family : serif;
+  font-size : 10pt;
+}
+table.profile {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  font-family : serif;
+  font-size : 10pt;
+  margin-top : 8px;
+  margin-left : 8px;
+  margin-right : 8px;
+  margin-bottom : 8px;
+}
+table.belt {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  background-color : #ffeedd;
+  padding : 0px 0px;
+  width : 100%;
+}
+table.content {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 2px 4px;
+}
+table.font-fixed {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 2px 4px;
+  font-family : monospace;
+}
+table.nest {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 0px 0px;
+}
+td {
+  padding : 0px 0px;
+  vertical-align : middle;
+}
+td.center {
+  text-align : center;
+}
+td.center-half {
+  text-align : center;
+  width : 50%;
+  font-size : 8pt;
+}
+td.center-small {
+  text-align : center;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.center-small-nopadding {
+  text-align : center;
+  font-size : 8pt;
+  padding : 0px 0px;
+}
+td.center-white {
+  text-align : center;
+  background-color : #ffffff;
+}
+td.center-small-white {
+  text-align : center;
+  font-size : 8pt;
+  background-color : #ffffff;
+}
+td.center-border1 {
+  text-align : center;
+  vertical-align : middle;
+  empty-cells : show;
+  border-style : solid;
+  border-width : 1px;
+  border-color : #ffc080;
+  width : 22px;
+  height : 22px;
+}
+td.left-small {
+  text-align : left;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.left-small-white {
+  text-align : left;
+  font-size : 8pt;
+  padding : 0px 4px;
+  background-color : #ffffff;
+}
+td.right-small {
+  text-align : right;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.right-small-white {
+  text-align : right;
+  font-size : 8pt;
+  padding : 0px 4px;
+  background-color : #ffffff;
+}
+th {
+  padding : 0px 0px;
+  vertical-align : middle;
+}
+#menu {
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
+  height: 32px;
+}
+#menu ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-align: center;
+  clear: both;
+}
+#menu li {
+  margin: 0px 5px 0px 0px;
+  padding: 0px;
+  float: left;
+}
+#menu a {
+  display: block;
+  padding: 2px 4px;
+  text-decoration: none;
+  margin: 0px;
+  font-weight: bold;
+  background: #FFFFFF;
+  color: #333333;
+  border: 1px solid #666666;
+}
+#menu a:hover {
+  display: block;
+  padding: 2px 4px;
+  border-bottom: 1px solid #000000;
+  text-decoration: none;
+  background: #FFCC66;
+}
+#menu .current {
+  background-color: #F45F57;
+  font-weight: bold;
+  color: #FFFFFF;
+  border: 1px solid #333333;
+}
+-->
+</style>
+<title>要求仕様書</title>
+</head>
+<body>
+<div id="menu">
+<ul>
+  <li><a href="../index.html">ホーム</a></li>
+  <li><a href="index.html" class="current">要求仕様書</a></li>
+  <li><a href="../DevelopmentPlan/index.html">開発計画書</a></li>
+  <li><a href="../BasicDesign/index.html">基本設計書</a></li>
+  <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
+  <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
+  <li><a href="../TestResult/index.html">テスト結果</a></li>
+  <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
+  <li><a href="../Program/index.html">プログラム</a></li>
+  <li><a href="../Manual/index.html">マニュアル</a></li>
+</ul>
+</div>
+<hr>
+<h2>要求仕様書</h2>
+<ul>
+  <li><a href="#KaihatsuNoMokuteki">開発の目的</a></li>
+  <li><a href="#KihonHoushin">基本方針</a>
+  <ul>
+    <li><a href="#SekkeiHoushin">設計方針</a></li>
+    <li><a href="#KanriHoushin">管理方針</a></li>
+    <li><a href="#JissouHoushin">実装方針</a></li>
+    <li><a href="#TetHoushin">テスト方針</a></li>
+    <li><a href="#ReleaseHoushin">リリース方針</a></li>
+  </ul></li>
+  <li><a href="#KihonYouken">基本要件</a>
+  <ul>
+    <li><a href="#ApplicationNoYouto">アプリケーションの用途</a></li>
+    <li><a href="#TashoutonaruUser">対象となるユーザ</a></li>
+    <li><a href="#HardwareKousei">ハードウェア構成</a></li>
+    <li><a href="#SoftwareKousei">ソフトウェア構成</a></li>
+    <li><a href="#MokuhyouToSeinou">目標と性能</a></li>
+    <li><a href="#SeigenJikou">制限事項</a></li>
+  </ul></li>
+  <li><a href="#KaihatsuTaisei">開発体制</a></li>
+  <li><a href="#KaihatsuSchedule">開発スケジュール</a></li>
+</ul>
+<div class="belt">
+<h3><a name="KaihatsuNoMokuteki">開発の目的</a></h3>
+</div>
+<p>テーマや条件を入力すると、幼児が読むような簡単な物語を生成するwebアプリケーションを作ります。全世界の子供を持っている親に向けてリリースします。</p>
+<p>この開発の目的は、開発の一連の作業（工程）をすることにより、かかる開発要員が品質の高いソフトウェアを念頭に置き、デザインとプログラミングのスキルを向上させることにある。</p>
+<p>また、モダンなフレームワークを使うことで新たな技術をキャッチアップする。フロントフレームワークをReactとし、バックエンドとデータベースは、FireBaseに任せるものとする。インフラはGCPを用いる。</p>
+<p>今回用いるReactはコンポーネント志向である。コンポーネント志向とは、アプリケーションの構造やデザインを独立した再利用可能な部品（コンポーネント）に分割するソフトウェア開発のアプローチです。このアプローチは、アプリケーションのコードの管理、維持、再利用を容易にし、開発チームの効率を向上させることを目的としています。</p>
+<p>コンポーネント志向開発の主な特徴は以下の通りです：</p>
+<p>再利用可能性： コンポーネントは独立した機能を持ち、アプリケーション内の他の部分と疎結合になっているため、他の箇所で再利用しやすいです。</p>
+<p>モジュール性： アプリケーションは小さな単位のコンポーネントに分割され、各コンポーネントは特定の機能や目的に焦点を当てています。これにより、アプリケーション全体の構造がわかりやすくなり、コードの品質や保守性が向上します。</p>
+<p>分離の原則： コンポーネント志向開発では、関心事を分離することが重要です。つまり、各コンポーネントは自分自身の機能に集中し、他のコンポーネントとは最小限の接触を持つことが求められます。</p>
+<p>データフローの一方向性： コンポーネント間のデータフローは一方向になることが推奨されます。これにより、データの流れが予測可能であり、アプリケーションの状態管理が容易になります。</p>
+<p>Reactは、コンポーネント志向開発をサポートするフロントエンドライブラリの一つです。Reactでは、UIをコンポーネントという再利用可能な要素に分割し、それらを組み合わせることでアプリケーション全体を構築します。これにより、開発者はコードの再利用性や可読性を向上させ、効率的な開発が可能になります。</p>
+<h4>使用する技術</h4>
+<table class="belt">
+  <tr>
+    <th>React</th>
+    <td>ユーザーインターフェイスを構築するためのJavaScriptライブラリ。コンポーネントベースのアーキテクチャで開発を行います。</td>
+  </tr>
+  <tr>
+    <th>TypeScript</th>
+    <td>型安全性を提供するJavaScriptのスーパーセット。開発効率やコード品質の向上が期待できます。</td>
+  </tr>
+  <tr>
+    <th>Firebase Authentication</th>
+    <td>ユーザー認証機能を提供し、サインアップ、ログイン、パスワードリセットなどの機能を実装します。</td>
+  </tr>
+  <tr>
+    <th>Firestore</th>
+    <td>ユーザーのプロフィール、生成された物語データ、カスタマイズ情報などを保存します。リアルタイム同期が可能で、データの変更を即座に反映できます。</td>
+  </tr>
+  <tr>
+    <th>Firebase Storage</th>
+    <td>画像や音声ファイルなどのメディアデータを保存するために使用します。これにより、絵本のカスタマイズや読み聞かせ機能を実現できます。</td>
+  </tr>
+  <tr>
+    <th>Firebase Hosting</th>
+    <td>静的ファイル（HTML, CSS, JavaScript, 画像ファイルなど）をホスティングするサービス。グローバルCDNと無料のSSL証明書が提供されています。</td>
+  </tr>
+  <tr>
+    <th>Custom Domain (オプション)</th>
+    <td>独自ドメインでアプリケーションを公開することができます。</td>
+  </tr>
+  <tr>
+    <th>Firebase CLI</th>
+    <td>デプロイや開発を効率化するためのコマンドラインツール。ローカル開発環境から簡単にデプロイが行えます。</td>
+  </tr>
+  <tr>
+    <th>OpenAI API</th>
+    <td>GPT-3.5-turboモデルを利用して物語を生成します。フロントエンドからリクエストを受け取り、生成した物語を返すようにします。</td>
+  </tr>
+</table>
+
+<p>これらの技術を組み合わせることで、効率的かつスケーラブルなシステム設計が可能です。また、サーバーレスアーキテクチャを使用することで、コスト効率の高いインフラ運用が実現できます。</p>
+<p>以下に実際に制作するアプリケーションの機能要件と非機能要件を記す．</p>
+
+<h4>機能要件</h4>
+<table class="belt">
+  <tr>
+    <th>(Must)ユーザー認証</th>
+    <td>サインアップ、ログイン、パスワードリセット機能</td>
+  </tr>
+  <tr>
+    <th>(Must)物語生成</th>
+    <td>ユーザーが入力したテーマや条件に基づいて、AIが物語を生成する機能</td>
+  </tr>
+  <tr>
+    <th>(できればやってみたい)PDF生成</th>
+    <td>生成した物語をPDFとして出力する機能</td>
+  </tr>
+  <tr>
+    <th>物語のシェア機能</th>
+    <td>SNSやメールで生成された物語を共有できる機能</td>
+  </tr>
+  <tr>
+    <th>読み聞かせ機能</th>
+    <td>生成された物語を音声で読み上げる機能</td>
+  </tr>
+  <tr>
+    <th>絵本のカスタマイズ機能</th>
+    <td>イラストやフォントなどを選択して、物語の見た目をカスタマイズできる機能</td>
+  </tr>
+  <tr>
+    <th>マルチ言語対応</th>
+    <td>アプリ内で複数の言語を選択できる機能</td>
+  </tr>
+  <tr>
+    <th>プラン管理</th>
+    <td>無料プランと有料プランを管理し、アップグレードを促す機能</td>
+  </tr>
+  <tr>
+    <th>ユーザープロフィール管理</th>
+    <td>ユーザー情報の編集や閲覧ができる機能</td>
+  </tr>
+</table>
+
+<h4>非機能要件</h4>
+<table class="belt">
+  <tr>
+    <th>レスポンシブデザイン</th>
+    <td>PC、タブレット、スマートフォンなど、さまざまなデバイスで適切な表示がされること</td>
+  </tr>
+  <tr>
+    <th>パフォーマンス</th>
+    <td>高速な物語生成、読み込み、カスタマイズ機能が実現されていること</td>
+  </tr>
+  <tr>
+    <th>セキュリティ</th>
+    <td>ユーザーデータが安全に保管され、不正アクセスやデータ漏洩がないこと</td>
+  </tr>
+  <tr>
+    <th>スケーラビリティ</th>
+    <td>大量のユーザーやリクエストにも対応できるシステムが構築されていること</td>
+  </tr>
+  <tr>
+    <th>メンテナンス性</th>
+    <td>開発チームが容易に機能追加や修正ができるアーキテクチャが構築されていること</td>
+  </tr>
+  <tr>
+    <th>ユーザビリティ</th>
+    <td>直感的で使いやすいUIが実現されていること</td>
+  </tr>
+  <tr>
+    <th>ローカライゼーション</th>
+    <td>地域や言語に応じて適切なコンテンツが提供されること</td>
+  </tr>
+  <tr>
+    <th>クロスプラットフォーム対応</th>
+    <td>iOS、Android、Webブラウザなどで利用できること</td>
+  </tr>
+  <tr>
+    <th>アクセシビリティ</th>
+    <td>視覚・聴覚・操作上の障害を持つユーザーにも利用しやすい設計がされていること</td>
+  </tr>
+</table>
+
+<h3><a name="KihonHoushin">基本方針</a></h3>
+</div>
+<p>開発に関わるドキュメントおよびプログラムのすべてをHTML文書にしてWebブラウザからアクセス可能にすること。また、アプリケーションのインストールや取り扱いを説明したマニュアルもHTML文書として作成すること。すなわち、この文書からたどれる全文書（このページの最上部にリンクされた全ページ）を完成させなければならない。以下にそれぞれの基本方針を記載する。</p>
+<ul>
+  <li><a name="SekkeiHoushin">設計方針</a>
+  <p>アプリケーションは一つのページで構成され、各機能はそのページ内で実現する。さまざまなデバイス（PC、タブレット、スマートフォン）で適切な表示がされるよう、レスポンシブデザインを実装する。高速なページ読み込みや物語生成を実現するために、パフォーマンス最適化を行います。キャッシュやコードの最適化、遅延読み込みなどの手法を適用する。</p></li>
+  <li><a name="KanriHoushin">管理方針</a>
+  <p>開発に伴う仕様書・設計書・報告書などの全ドキュメントおよび全ソースプログラムをGitの中に格納し、リビジョン管理（バージョン管理）を行い、開発チームで共有すること。</p></li>
+  <li><a name="JissouHoushin">実装方針</a>
+  <p>コーディング規約を遵守すること。細かくはeslint, prettierに記述する。コンポーネント名はアッパーキャメルケース、変数名・関数名はローワーキャメルケース、定数名はスネークケースを用いること。</p></li>
+  <li><a name="TetHoushin">テスト方針</a>
+  <p>ユーザの操作に関わるテストケースは設計段階でテスト仕様書にまとめること。Jestによるテストケースを行うこと。テスト結果は報告書にまとめ、各々のリリースや大きな修正の直後に全件実施（回帰テスト）を行わなければならない。</p>
+  <li><a name="ReleaseHoushin">リリース方針</a>
+  <p>（Major.Minor.Patch）を使用して、リリースの互換性や変更の大きさを明示します。Gitフローに従って、リリースブランチを作成し、リリース用のバグ修正やドキュメントの更新を行います。リリースごとに、変更履歴（CHANGELOG）を更新して、新機能や修正、削除された機能などの詳細を明記します。自動化されたユニットテスト、統合テスト、エンドツーエンドテストを実施し、リリースの品質を確保します。また、リリース前にコードレビューや機能検証を行います。リリースに伴うドキュメントの更新が重要です。プロジェクトに適切なライセンスを適用し、著作権表示を含めます。</p></li>
+</ul>
+<div class="belt">
+<h3><a name="KihonYouken">基本要件</a></h3>
+</div>
+<p>以下に開発計画書および基本設計書を作成するにあって必要なことを記載する。</p>
+<ul>
+  <li><a name="ApplicationNoYouto">アプリケーションの用途</a>
+  <p>寝る前の子供に読み聞かせするための絵本を生成するアプリケーションを作成する。</p></li>
+  <li><a name="TashoutonaruUser">対象となるユーザ</a>
+  <p>現在、世界には約21億の子供がいるとされています。このアプリケーションは、幼児向けの物語を生成することができるため、対象年齢は2歳から6歳までと考えられます。この年齢層は、約6億人の子供たちが対象となります。また、親である約12億人も潜在的な顧客となります。</p></li>
+  <li><a name="HardwareKousei">ハードウェア構成</a>
+  <p>Name: Apple Macintosh シリーズ　(MacBook / MacBook Air / MacBook Pro / Mac mini / iMac / Mac Pro など)<br>
+  Processor: Intel Core 2 Duo 2GHz クラス以上（64bit アーキテクチャの Xenon などを含む）<br>
+  Memory: 1GB 以上<br>
+  Hard Disk: 250MB 以上の空き容量</p></li>
+  <li><a name="SoftwareKousei">ソフトウェア構成</a>
+  <p>OS: OS X Yosemite (10.10) / OS X El Capitan (10.11) / macOS Sierra (10.12) 以上<br>
+  開発に用いるプログラミング言語・フレームワークは以下とする。<br>
+  1) React 18*<br>
+  2) TypeScript 4* <br>
+  <li><a name="MokuhyouToSeinou">目標と性能</a>
+  <p>ユーザがログインし、条件指定することで物語を生成を可能とする。また、物語の履歴確認機能やPDF生成も可能とする。</p>
+  
+  <li><a name="SeigenJikou">制限事項</a>
+  <p>標準ライブラリ（必要であれば拡張ライブラリ）を使用（援用）して開発すること。Macintoshシリーズをターゲットにしているが、実装に用いる言語はプラットフォーム非依存性を仮想マシンによって実現しているプログラミング言語である。したがって、開発したアプリケーションはLinuxやWindowsなどでも動作することが望ましい。</p></li>
+</ul>
+<div class="belt">
+<h3><a name="KaihatsuTaisei">開発体制</a></h3>
+</div>
+<p>開発に関わるメンバの一覧を作成し、プロジェクトマネージャ、デザイナ、プログラマ、テスタなどの役割を明確化し、加えて、開発するコンポーネント毎に担当者を決めて、それらを開発計画書の中に明記すること。また、仕様適合検査の責任者を立て、次項の開発スケジュールに示されたマイルストーン（目標達成へ向かう過程の一つの段階）ごとに、設計段階から仕様のチェックをクライアント（開発依頼者）と共に行うこと。開発にあたって不明なことが生じた場合には、必ずクライアントと協議して事を進めなければならない。</p>
+<div class="belt">
+<h3><a name="KaihatsuSchedule">開発スケジュール</a></h3>
+</div>
+<p>開発スケジュールを前項の開発体制と共に開発計画書の中に明記し、着手する前にクライアントの認可を受ける（契約を取り交わす）こと。実際の開発は1週間で行うこと。1週間以内での開発（納品＆リリース）を厳守しなければならない。</p>
+<hr>
+<div class="right-small">Copyright ... </div>
+</body>
+</html>
