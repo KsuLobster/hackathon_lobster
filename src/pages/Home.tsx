@@ -1,6 +1,6 @@
 //import '*'
 
-function HomePage() {
+function Home() {
   return (
     <div className="App">
       <h1>HomePage.tsx</h1>
@@ -9,4 +9,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default Home
