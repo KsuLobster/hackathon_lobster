@@ -1,6 +1,6 @@
 //import '*'
 
-function ContactPage() {
+function Contact() {
   return (
     <div className="App">
       <h1>ContactPage.tsx</h1>
@@ -9,4 +9,4 @@ function ContactPage() {
   )
 }
 
-export default ContactPage
+export default Contact

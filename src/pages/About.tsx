@@ -1,6 +1,6 @@
-import './AboutPage.css'
+import './About.css'
 
-function AboutPage() {
+function About() {
   return (
     <div className="App">
       <h1>AboutPage.tsx</h1>
@@ -9,4 +9,4 @@ function AboutPage() {
   )
 }
 
-export default AboutPage
+export default About
