@@ -1,10 +1,21 @@
-import './Footer.css'
+import style from './Footer.module.css'
 
 function Footer() {
   return (
-    <div className="App">
-      <h1>Footer.tsx</h1>
-    </div>
+    <footer>
+      <a href="/" className={style.logo}>
+        絵本ツクール
+      </a>
+      <div className={style.links}>
+        <a href="./usage">使い方</a>
+        <a href="./terms">利用規約</a>
+        <a href="./privacy">プライバシーポリシー</a>
+        <a href="./contact">お問い合わせ</a>
+      </div>
+      <div className={style.copyright_notice}>
+        Copyright © 2023 KSU Lobster All rights reserved.
+      </div>
+    </footer>
   )
 }
 
