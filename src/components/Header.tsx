@@ -3,17 +3,23 @@ import style from './Header.module.css'
 import { BsPlusSquareDotted } from 'react-icons/bs'
 import { MdOutlineBookmarks, MdOutlineLocalLibrary } from 'react-icons/md'
 import { RxHamburgerMenu } from 'react-icons/rx'
+import profile_icon_placeholder from '../assets/profile-icon-placeholder.jpg'
 
 function Header() {
+  // ウィンドウの幅を保持するstate
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
+    // ウィンドウがリサイズされた際にwindowWidthを更新
     const handleResize = () => setWindowWidth(window.innerWidth)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  // メニューをハンバーガーメニューに切り替えるウィンドウ幅
   const menuThreshold = 670
+
+  // メニューの表示状態
   const [showMenu, setShowMenu] = useState(windowWidth > menuThreshold)
 
   return (
@@ -32,6 +38,7 @@ function Header() {
       <div
         className={style.links}
         style={{
+          // ウィンドウ幅がmenuThreshold未満 && showMenuがfalse の場合はメニューを非表示
           display: windowWidth > menuThreshold ? '' : showMenu ? '' : 'none',
         }}
       >
@@ -50,7 +57,7 @@ function Header() {
       </div>
       <div className={style.header_right}>
         <a className={style.nav_account} href="/signin">
-          <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" />
+          <img src={profile_icon_placeholder} alt="アカウントアイコン画像" />
         </a>
       </div>
     </header>

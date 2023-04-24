@@ -6,17 +6,21 @@ header {
   display: flex;
   align-items: center;
 }
+
+/* ハンバーガーメニューのボタン */
 .menu_button {
   display: none;
   cursor: pointer;
   margin-right: 12px;
 }
+/* ロゴ */
 .nav_home {
   font-weight: bold;
   text-decoration: none;
   color: #000000;
   font-size: 20px;
 }
+/* ナビゲーションメニュー */
 .links {
   margin-left: 24px;
   display: flex;
@@ -47,17 +51,18 @@ a.nav_create {
 a.nav_create:hover {
   background: #305747;
 }
-.nav_home img {
-  width: 60px;
-}
+
 .header_right {
   margin-left: auto;
 }
+/* ユーザーアカウント */
 .nav_account img {
   width: 32px;
   height: 32px;
   border-radius: 999px;
 }
+
+/* スマホデザイン */
 @media screen and (max-width: 670px) {
   .menu_button {
     display: grid;
