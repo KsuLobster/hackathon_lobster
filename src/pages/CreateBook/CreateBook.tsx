@@ -1,10 +1,19 @@
-//import '*'
+import { useState } from 'react'
+import InputForm from './InputForm'
+import Preview from './Preview'
 
 function CreateBook() {
+  const [inputData, setInputData] = useState({})
+
+  const handleInputData = (data: any) => {
+    setInputData(data)
+  }
+
   return (
     <div className="App">
-      <h1>CreateBook.tsx</h1>
-      <p>絵本生成ページのコンポーネントです。</p>
+      <h1>絵本生成</h1>
+      <InputForm />
+      <Preview />
     </div>
   )
 }
