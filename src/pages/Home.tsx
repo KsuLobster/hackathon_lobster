@@ -7,11 +7,11 @@ function Home() {
       <main className={styles.main}>
         <section className={styles.navigation}>
           <Link to="/create-book" className={styles.navItem}>
-            <img src="src/assets/unknown.png" alt="絵本生成" />
+            <img src="src/assets/homeBookGeneration.png" alt="絵本生成" />
             <h2>絵本生成</h2>
           </Link>
           <Link to="/rpg-book" className={styles.navItem}>
-            <img src="src/assets/unknown.png" alt="絵本RPG" />
+            <img src="src/assets/homeBookRPG.png" alt="絵本RPG" />
             <h2>絵本RPG</h2>
           </Link>
         </section>
