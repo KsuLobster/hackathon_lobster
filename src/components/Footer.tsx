@@ -12,9 +12,7 @@ function Footer() {
         <a href="./privacy">プライバシーポリシー</a>
         <a href="./contact">お問い合わせ</a>
       </div>
-      <div className={style.copyright_notice}>
-        Copyright © 2023 KSU Lobster All rights reserved.
-      </div>
+      <div className={style.copyright_notice}>KSU Lobster © 2023</div>
     </footer>
   )
 }
