@@ -17,10 +17,10 @@ function Header() {
   }, [])
 
   // メニューをハンバーガーメニューに切り替えるウィンドウ幅
-  const menuThreshold = 670
+  const menu_threshold = 670
 
   // メニューの表示状態
-  const [showMenu, setShowMenu] = useState(windowWidth > menuThreshold)
+  const [showMenu, setShowMenu] = useState(windowWidth > menu_threshold)
 
   return (
     <header>
@@ -38,8 +38,8 @@ function Header() {
       <div
         className={style.links}
         style={{
-          // ウィンドウ幅がmenuThreshold未満 && showMenuがfalse の場合はメニューを非表示
-          display: windowWidth > menuThreshold ? '' : showMenu ? '' : 'none',
+          // ウィンドウ幅がmenu_threshold未満 && showMenuがfalse の場合はメニューを非表示
+          display: windowWidth > menu_threshold ? '' : showMenu ? '' : 'none',
         }}
       >
         <a className={style.nav_create} href="/story-input">
