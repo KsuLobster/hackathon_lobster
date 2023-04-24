@@ -1,0 +1,73 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.main {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.navigation {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	max-width: 800px;
+}
+
+.navItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	font-size: 24px;
+	color: #333;
+	padding: 1rem;
+	background-color: #f5f5dc; /* ベージュ色 */
+  border-radius: 10px; /* ボタンの角を丸くする */
+  padding: 1rem; /* 内側の余白を追加 */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* ボタンに影を追加 */
+  transition: transform 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+}
+
+.navItem:hover {
+  transform: translateY(-5px); /* ホバー時にボタンを上に移動 */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* ホバー時の影の大きさを変更 */
+}
+
+.navItem img {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+/* Media Query for Tablets */
+@media (max-width: 768px) {
+	.navItem {
+		font-size: 20px;
+	}
+
+	.navItem img {
+		width: 120px;
+		height: 120px;
+	}
+}
+
+/* Media Query for Mobile devices */
+@media (max-width: 480px) {
+	.navItem {
+		font-size: 16px;
+	}
+
+	.navItem img {
+		width: 90px;
+		height: 90px;
+	}
+}
