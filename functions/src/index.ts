@@ -1,18 +1,17 @@
-import * as functions from "firebase-functions"
-import axios from "axios"
+// Firebase Functionsとaxiosをインポート
+import * as functions from "firebase-functions";
+import axios from "axios";
 
-if (process.env.NODE_ENV !== "production") {
-	// ローカル環境でのみ .env ファイルを使用する
-	require("dotenv").config();
-}
+// Firebase Functionsの環境変数からOpenAI APIキーを取得
+const OPENAI_API_KEY = functions.config().openai.api_key;
 
-// OpenAI API エンドポイントを作成します。
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY; // .env ファイルから読み込むことを検討してください。
-
+// generateStoryという名前のCloud Functionを作成
 exports.generateStory = functions.https.onCall(async (data, context) => {
+	// フロントエンドから送られてくるプロンプトを取得
 	const prompt = data.prompt;
 
 	try {
+		// OpenAI APIにPOSTリクエストを送信して、レスポンスを受け取る
 		const response = await axios.post(
 			"https://api.openai.com/v1/engines/davinci-codex/completions",
 			{
@@ -25,17 +24,18 @@ exports.generateStory = functions.https.onCall(async (data, context) => {
 			{
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": `Bearer ${OPENAI_API_KEY}`,
+					Authorization: `Bearer ${OPENAI_API_KEY}`,
 				},
 			}
 		);
 
+		// レスポンスから生成されたストーリーを取得
 		const story = response.data.choices[0].text;
+		// ストーリーをフロントエンドに返す
 		return { story: story };
 	} catch (error) {
 		console.error(error);
+		// エラーが発生した場合は、エラーメッセージをフロントエンドに返す
 		return { error: "エラーが発生しました。" };
 	}
 });
-
-
