@@ -3,7 +3,6 @@ import style from './Header.module.css'
 import { BsPlusSquareDotted } from 'react-icons/bs'
 import { MdOutlineBookmarks, MdOutlineLocalLibrary } from 'react-icons/md'
 import { RxHamburgerMenu } from 'react-icons/rx'
-import profile_icon_placeholder from '../assets/profile-icon-placeholder.jpg'
 
 function Header() {
   // ウィンドウの幅を保持するstate
@@ -57,7 +56,10 @@ function Header() {
       </div>
       <div className={style.header_right}>
         <a className={style.nav_account} href="/signin">
-          <img src={profile_icon_placeholder} alt="アカウントアイコン画像" />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/profile-icon-placeholder.jpg`}
+            alt="アカウントアイコン画像"
+          />
         </a>
       </div>
     </header>
