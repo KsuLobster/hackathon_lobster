@@ -1,16 +1,17 @@
 import style from './Footer.module.css'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
     <footer>
-      <a href="/" className={style.logo}>
+      <Link to="/" className={style.logo}>
         絵本ツクール
-      </a>
+      </Link>
       <div className={style.links}>
-        <a href="./usage">使い方</a>
-        <a href="./terms">利用規約</a>
-        <a href="./privacy">プライバシーポリシー</a>
-        <a href="./contact">お問い合わせ</a>
+        <Link to="./usage">使い方</Link>
+        <Link to="./terms">利用規約</Link>
+        <Link to="./privacy">プライバシーポリシー</Link>
+        <Link to="./contact">お問い合わせ</Link>
       </div>
       <div className={style.copyright_notice}>KSU Lobster © 2023</div>
     </footer>
