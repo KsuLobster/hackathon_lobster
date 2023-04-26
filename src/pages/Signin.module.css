@@ -2,13 +2,18 @@
   --blue: #3e75ff;
   --gray: rgb(201, 201, 201);
 }
+.app {
+  min-height: calc(100vh - 72px - 96px);
+  display: grid;
+  place-content: center;
+}
 .form_container {
+  margin-top: -64px;
   width: 300px;
   box-shadow: 0 2px 4px rgb(201, 201, 201);
   border-radius: 16px;
   padding: 20px 24px 24px 24px;
-  margin: 32px auto;
-  transition: box-shadow .3s;
+  transition: box-shadow 0.3s;
 }
 .form_container:hover {
   box-shadow: 0 8px 10px var(--gray);
