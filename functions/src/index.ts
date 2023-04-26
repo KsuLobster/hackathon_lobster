@@ -5,7 +5,6 @@ import * as cors from "cors";
 
 // Firebase Functionsの環境変数からOpenAI APIキーを取得
 const OPENAI_API_KEY = functions.config().openai.api_key;
-console.log("OpenAI API Key:", OPENAI_API_KEY);
 
 // CORSミドルウェアを適用
 const corsHandler = cors({origin: true});
@@ -15,17 +14,18 @@ exports.generateStory = functions.https.onRequest((req, res) => {
   corsHandler(req, res, async () => {
     // フロントエンドから送られてくるプロンプトを取得
     const prompt = req.body.prompt;
+    console.log("これはpromptのログです : " + prompt);
 
     try {
       // OpenAI APIにPOSTリクエストを送信して、レスポンスを受け取る
       const response = await axios.post(
-        "https://api.openai.com/v1/engines/davinci-codex/completions",
+        "https://api.openai.com/v1/engines/text-davinci-003/completions",
         {
           prompt: prompt,
           max_tokens: 150,
           n: 1,
-          stop: null,
-          temperature: 1,
+          stop: ["The End"],
+          temperature: 0.7,
         },
         {
           headers: {
@@ -37,6 +37,7 @@ exports.generateStory = functions.https.onRequest((req, res) => {
 
       // レスポンスから生成されたストーリーを取得
       const story = response.data.choices[0].text;
+      console.log("これはレスポンス全体のログです。" + JSON.stringify(response.data));
       // ストーリーをフロントエンドに返す
       res.json({story: story});
     } catch (error) {

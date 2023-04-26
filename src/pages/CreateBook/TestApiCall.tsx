@@ -1,22 +1,30 @@
 // CreateBook/TestApiCall.tsx
 import { useState } from 'react'
-import { httpsCallable } from 'firebase/functions'
-import { functions } from '../../firebase'
-
-interface ApiResponse {
-  data: {
-    story: string
-  }
-}
 
 function TestApiCall() {
   const [response, setResponse] = useState<string | null>(null)
 
   const callApi = async () => {
     try {
-      const generateStory = httpsCallable(functions, 'generateStory')
-      const result = await generateStory({ prompt: 'Once upon a time...' })
-      setResponse((result as ApiResponse).data.story)
+      const response = await fetch(
+        'https://us-central1-lobster-b93b4.cloudfunctions.net/generateStory/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: 'むかしむかし、あるところに...',
+          }),
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Error calling API.')
+      }
+
+      const result = await response.json()
+      setResponse(result.story)
     } catch (error) {
       console.error('Error calling API:', error)
       console.error('Full error object:', JSON.stringify(error))
