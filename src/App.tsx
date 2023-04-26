@@ -9,13 +9,11 @@ import RpgBook from './pages/RpgBook/RpgBook'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import { FirebaseAppProvider } from 'reactfire'
-//FirebaseAppProvider コンポーネントを使用して、Firebase の設定をアプリケーション全体で共有する必要があるそうです
 import { firebaseConfig } from './firebase'
-// Firebase の設定が記述された箇所をインポート
 
 function App() {
   return (
-    <>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <Router>
         <Header />
         <Routes>
@@ -29,13 +27,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-
-      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        {/* アプリケーションのコンポーネントをここに記述 */
-        /*ここでfirebaseConfigを共有したいコンポーネントを設定*/}
-        <Signup />
-      </FirebaseAppProvider>
-    </>
+    </FirebaseAppProvider>
   )
 }
 
