@@ -5,7 +5,10 @@ function Footer() {
   return (
     <footer>
       <Link to="/" className={style.logo}>
-        絵本ツクール
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/storysprout-logo-white.svg`}
+          alt="StorySproutロゴ"
+        />
       </Link>
       <div className={style.links}>
         <Link to="./usage">使い方</Link>
