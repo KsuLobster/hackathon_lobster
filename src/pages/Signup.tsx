@@ -1,30 +1,52 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
+import { Link } from 'react-router-dom'
 
 const SignUp = (): JSX.Element => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [passworderror, setpasswordError] = useState<string>('')
+  const [emailerror, setemailError] = useState<string>('')
+  //firebaseと連携させている処理
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault()
     console.log('登録', email, password)
     try {
-      createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
     } catch (error) {
       console.log(error)
     }
   }
-
+  //emailを設定している処理
   const handleChangeEmail = (event: FormEvent<HTMLInputElement>): void => {
     setEmail(event.currentTarget.value)
   }
-
+  //パスワードを設定している処理
   const handleChangePassword = (event: FormEvent<HTMLInputElement>): void => {
     setPassword(event.currentTarget.value)
   }
+  //emailアドレスじゃないものを設定されたときにエラーを出す処理
+  useEffect(() => {
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setemailError('有効なメールアドレスを入力してください')
+    } else {
+      setemailError('有効なメールアドレスです！')
+    }
+  }, [email])
+  //パスワードが六文字に満たないとエラーを出す処理
+  useEffect(() => {
+    if (password.length < 6) {
+      setpasswordError(
+        'パスワードとして使用できません。パスワードは6文字以上で入力してください'
+      )
+    } else {
+      setpasswordError('パスワードとして使用できます！')
+    }
+  }, [password])
 
   return (
     <div>
@@ -40,6 +62,7 @@ const SignUp = (): JSX.Element => {
             value={email}
           />
         </div>
+        <div>{emailerror}</div>
         <div>
           <label>パスワード</label>
           <input
@@ -49,8 +72,11 @@ const SignUp = (): JSX.Element => {
             value={password}
           />
         </div>
+        <div>{passworderror}</div>
         <div>
-          <button type="submit">登録</button>
+          <Link to="/">
+            <button type="submit">登録</button>
+          </Link>
         </div>
       </form>
     </div>
