@@ -1,4 +1,4 @@
-// RpgBook/CreateRpg.tsx
+// CreateBook/CreateRpg.tsx
 import { useState } from 'react'
 
 function CreateRpg() {
