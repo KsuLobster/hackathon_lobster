@@ -8,15 +8,15 @@ footer {
 
 /* ロゴ */
 .logo {
-  font-weight: bold;
-  color: #eee;
-  text-decoration: none;
   align-self: start;
+}
+.logo img {
+  width: 100px;
 }
 
 /* リンク集 */
 .links {
-  padding-top: 3px;
+  padding-top: 2px;
   grid-row: 1;
   grid-column: 2 / span 1;
   margin: 0 auto;
