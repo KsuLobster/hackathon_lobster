@@ -1,10 +1,10 @@
 import React, { useState, FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom' // ここにナビゲーションモジュール追加！
 import 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
 
-const SignUp = (): JSX.Element => {
+const Signup = (): JSX.Element => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const navigate = useNavigate() // ページ遷移用のフック
@@ -15,7 +15,7 @@ const SignUp = (): JSX.Element => {
     console.log('登録', email, password)
     try {
       createUserWithEmailAndPassword(auth, email, password)
-      navigate('/create-book')
+      navigate('/create-book') // ここにナビゲーションを追加しました！
     } catch (error) {
       console.log(error)
     }
@@ -60,4 +60,4 @@ const SignUp = (): JSX.Element => {
   )
 }
 
-export default SignUp
+export default Signup
