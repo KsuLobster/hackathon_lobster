@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
@@ -6,6 +7,7 @@ import { auth } from '../firebase'
 const SignUp = (): JSX.Element => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const navigate = useNavigate() // ページ遷移用のフック
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
   ): Promise<void> => {
@@ -13,6 +15,7 @@ const SignUp = (): JSX.Element => {
     console.log('登録', email, password)
     try {
       createUserWithEmailAndPassword(auth, email, password)
+      navigate('/create-book')
     } catch (error) {
       console.log(error)
     }
