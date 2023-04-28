@@ -1,16 +1,56 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function InputForm() {
   const [condition1, setCondition1] = useState('')
   const [condition2, setCondition2] = useState('')
-  const [condition3, setCondition3] = useState('')
-  const [condition4, setCondition4] = useState('')
-  const [condition5, setCondition5] = useState('')
+  const [generateStoryPrompt, setGenerateStoryPrompt] = useState('')
+  const [response, setResponse] = useState('')
+  const navigate = useNavigate() // ページ遷移用のフック
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => { // 非同期処理になるためasyncを追加
     e.preventDefault()
-    // ここで入力データをPreview.tsxに渡す処理を実装する
+    // generateStoryPromptに条件フォームを使ってプロンプトを入れる
+    setGenerateStoryPrompt(`${condition1}で${condition2}な子供向けな物語を書いて下さい。むかしむかし、あるところに...`)
+
+    // 環境変数からエンドポイントURLを取得
+    const apiUrl = process.env.REACT_APP_STORY_GENERATOR_API_URL
+
+    // OpenAI APIを呼び出し、絵本の内容を生成する処理をここに書く
+    try {
+      // APIへのリクエストを送信
+      const response = await fetch(apiUrl as string, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: generateStoryPrompt,
+        }),
+      })
+
+      // レスポンスが正常でない場合、エラーをスロー
+      if (!response.ok) {
+        throw new Error('Error calling API.')
+      }
+
+      // レスポンスのJSONを解析し、ストーリーをステートに設定
+      const result = await response.json()
+      setResponse(result.story)
+    } catch (error) {
+      // API呼び出しでエラーが発生した場合、コンソールにエラーを出力し、ステートにエラーメッセージを設定
+      console.error('Error calling API:', error)
+      console.error('Full error object:', JSON.stringify(error))
+      setResponse('Error calling API.')
+    }
+
+    // データをPreviewに渡したい
+
+    // プレビューページへ遷移
+    navigate('/create-book/preview')
   }
+
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -30,33 +70,6 @@ function InputForm() {
             id="condition2"
             value={condition2}
             onChange={(e) => setCondition2(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="condition3">条件3: </label>
-          <input
-            type="text"
-            id="condition3"
-            value={condition3}
-            onChange={(e) => setCondition3(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="condition4">条件4: </label>
-          <input
-            type="text"
-            id="condition4"
-            value={condition4}
-            onChange={(e) => setCondition4(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="condition5">条件5: </label>
-          <input
-            type="text"
-            id="condition5"
-            value={condition5}
-            onChange={(e) => setCondition5(e.target.value)}
           />
         </div>
         <button type="submit">生成</button>
