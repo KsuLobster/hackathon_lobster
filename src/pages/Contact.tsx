@@ -16,16 +16,16 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 
 // 入力値の定義をする
 type Inputs = {
-  radioContent: number
+  radioContent: string
   textAdress: string
   textMatter: string
 }
 
 function Contact() {
   // useFormで必要な関数を取得し、デフォルト値を指定する
-  const { control, handleSubmit } = useForm<Inputs>({
+  const { control, getValues, handleSubmit } = useForm<Inputs>({
     defaultValues: {
-      radioContent: -1,
+      radioContent: '',
       textAdress: '',
       textMatter: '',
     },
@@ -34,7 +34,7 @@ function Contact() {
   // 検証ルールを指定する
   const validationRules = {
     radioContent: {
-      validate: (value: number) => value !== -1 || 'いずれかを選択してください',
+      validate: (value: string) => value !== '' || 'いずれかを選択してください',
     },
     textAdress: {
       validate: (val: string) => {
@@ -96,60 +96,102 @@ function Contact() {
                 >
                   <FormControlLabel
                     {...field}
-                    value={1}
+                    value="questions"
                     control={<Radio />}
                     label="ご質問"
                   />
                   <FormControlLabel
                     {...field}
-                    value={2}
+                    value="suggestions"
                     control={<Radio />}
                     label="ご意見・提案"
                   />
                   <FormControlLabel
                     {...field}
-                    value={0}
+                    value="others"
                     control={<Radio />}
                     label="その他"
                   />
                 </RadioGroup>
+                {getValues('radioContent') != '' && (
+                  <Controller
+                    name="textAdress"
+                    control={control}
+                    rules={validationRules.textAdress}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        label="メールアドレス"
+                        error={fieldState.invalid}
+                        helperText={fieldState.error?.message}
+                      />
+                    )}
+                  />
+                )}
+                {getValues('radioContent') == 'questions' && (
+                  <Controller
+                    name="textMatter"
+                    control={control}
+                    rules={validationRules.textMatter}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        label="具体的な質問の内容を入力してください"
+                        multiline
+                        rows={4}
+                        error={fieldState.invalid}
+                        helperText={fieldState.error?.message}
+                      />
+                    )}
+                  />
+                )}
+                {getValues('radioContent') == 'suggestions' && (
+                  <Controller
+                    name="textMatter"
+                    control={control}
+                    rules={validationRules.textMatter}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        label="具体的な意見・提案の内容を入力してください"
+                        multiline
+                        rows={4}
+                        error={fieldState.invalid}
+                        helperText={fieldState.error?.message}
+                      />
+                    )}
+                  />
+                )}
+                {getValues('radioContent') == 'others' && (
+                  <Controller
+                    name="textMatter"
+                    control={control}
+                    rules={validationRules.textMatter}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        type="text"
+                        label="具体的なお問い合わせの内容を入力してください"
+                        multiline
+                        rows={4}
+                        error={fieldState.invalid}
+                        helperText={fieldState.error?.message}
+                      />
+                    )}
+                  />
+                )}
+                {getValues('radioContent') != '' && (
+                  <Button variant="contained" type="submit">
+                    送信する
+                  </Button>
+                )}{' '}
                 <FormHelperText>{fieldState.error?.message}</FormHelperText>
               </FormControl>
             )}
           />
-          <Controller
-            name="textAdress"
-            control={control}
-            rules={validationRules.textAdress}
-            render={({ field, fieldState }) => (
-              <TextField
-                {...field}
-                type="text"
-                label="メールアドレス"
-                error={fieldState.invalid}
-                helperText={fieldState.error?.message}
-              />
-            )}
-          />
-          <Controller
-            name="textMatter"
-            control={control}
-            rules={validationRules.textMatter}
-            render={({ field, fieldState }) => (
-              <TextField
-                {...field}
-                type="text"
-                label="具体的なお問い合わせ内容"
-                multiline
-                rows={4}
-                error={fieldState.invalid}
-                helperText={fieldState.error?.message}
-              />
-            )}
-          />
-          <Button variant="contained" type="submit">
-            送信する
-          </Button>
         </Stack>
       </Container>
     </div>
