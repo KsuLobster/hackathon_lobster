@@ -90,7 +90,7 @@ function Contact() {
                   お問い合わせ内容
                 </FormLabel>
                 <RadioGroup
-                  aria-lavelledby="radio-buttons-group-label"
+                  aria-labelledby="radio-buttons-group-label"
                   value={field.value}
                   name="content"
                 >
