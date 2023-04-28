@@ -1,24 +1,23 @@
 header {
   position: sticky;
   top: 0;
-  padding: 0 16px;
+  padding: 0 16px 0 24px;
   height: 72px;
   display: flex;
   align-items: center;
+  backdrop-filter: blur(2px);
 }
 
 /* ハンバーガーメニューのボタン */
 .menu_button {
   display: none;
   cursor: pointer;
-  margin-right: 12px;
+  margin-right: 16px;
+  user-select: none;
 }
 /* ロゴ */
-.nav_home {
-  font-weight: bold;
-  text-decoration: none;
-  color: #000000;
-  font-size: 20px;
+.nav_home img {
+  width: 144px;
 }
 /* ナビゲーションメニュー */
 .links {
@@ -54,16 +53,42 @@ a.nav_create:hover {
 
 .header_right {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }
-/* ユーザーアカウント */
-.nav_account img {
+
+.user_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 4px 4px 4px 12px;
+  cursor: pointer;
+}
+.user_wrapper:hover {
+  outline: 1px solid #ccc;
+}
+.user_name {
+  font-size: 14px;
+}
+.user_icon img {
+  display: grid;
+  place-content: center;
   width: 32px;
   height: 32px;
   border-radius: 999px;
 }
+.account_menu {
+  position: absolute;
+  right: 16px;
+  top: 60px;
+  background: gray;
+  border-radius: 8px;
+  padding: 8px;
+}
 
 /* スマホデザイン */
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 750px) {
   .menu_button {
     display: grid;
     place-items: center;
