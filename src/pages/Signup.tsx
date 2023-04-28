@@ -2,13 +2,15 @@ import React, { useState, FormEvent, useEffect } from 'react'
 import 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const SignUp = (): JSX.Element => {
+const Signup = (): JSX.Element => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [passworderror, setpasswordError] = useState<string>('')
   const [emailerror, setemailError] = useState<string>('')
+
+  const navigate = useNavigate() // ページ遷移用のフック
   //firebaseと連携させている処理
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
@@ -17,6 +19,7 @@ const SignUp = (): JSX.Element => {
     console.log('登録', email, password)
     try {
       await createUserWithEmailAndPassword(auth, email, password)
+      navigate('/') // ここにナビゲーションを追加しました！
     } catch (error) {
       console.log(error)
     }
@@ -29,6 +32,7 @@ const SignUp = (): JSX.Element => {
   const handleChangePassword = (event: FormEvent<HTMLInputElement>): void => {
     setPassword(event.currentTarget.value)
   }
+
   //emailアドレスじゃないものを設定されたときにエラーを出す処理
   useEffect(() => {
     if (!/\S+@\S+\.\S+/.test(email)) {
@@ -51,6 +55,7 @@ const SignUp = (): JSX.Element => {
   return (
     <div>
       <h1>ユーザ登録</h1>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>メールアドレス</label>
@@ -74,13 +79,11 @@ const SignUp = (): JSX.Element => {
         </div>
         <div>{passworderror}</div>
         <div>
-          <Link to="/">
-            <button type="submit">登録</button>
-          </Link>
+          <button type="submit">登録</button>
         </div>
       </form>
     </div>
   )
 }
 
-export default SignUp
+export default Signup
