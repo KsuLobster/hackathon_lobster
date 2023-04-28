@@ -40,7 +40,6 @@ function CreateRpg() {
   }
 
   //1番のストーリーを生成
-  //1番のストーリーを生成
   const createFrom1 = async () => {
     // 環境変数からエンドポイントURLを取得
     const apiUrl = process.env.REACT_APP_STORY_GENERATOR_API_URL
@@ -53,7 +52,7 @@ function CreateRpg() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: '1.1の続きをお願いします ',
+          prompt: '1の続きをお願いします ',
         }),
       })
 
