@@ -14,8 +14,15 @@ const Signup = (): JSX.Element => {
     event.preventDefault()
     console.log('登録', email, password)
     try {
-      createUserWithEmailAndPassword(auth, email, password)
-      navigate('/create-book') // ここにナビゲーションを追加しました！
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      // ユーザー登録が成功した後、userCredential.userを使ってユーザー情報を取得できる
+      const user = userCredential.user
+
+      navigate('/create-book')
     } catch (error) {
       console.log(error)
     }

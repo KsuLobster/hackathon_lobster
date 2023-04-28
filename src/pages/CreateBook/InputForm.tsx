@@ -2,21 +2,25 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getFirestore, doc, setDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
+import styles from './InputForm.module.css'
 
 function InputForm() {
-  const [condition1, setCondition1] = useState('')
-  const [condition2, setCondition2] = useState('')
-  const [generateStoryPrompt, setGenerateStoryPrompt] = useState('')
+  const [condition1, setCondition1] = useState('元気')
+  const [condition2, setCondition2] = useState('走り回る男の')
   const [response, setResponse] = useState('むかしむかし、あるところに...')
+  const [previewEnabled, setPreviewEnabled] = useState(false)
   const navigate = useNavigate() // ページ遷移用のフック
+
+  // Previewページ遷移のハンドラ
+  const handlePreview = () => {
+    navigate('/create-book/preview')
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     // 非同期処理になるためasyncを追加
     e.preventDefault()
     // generateStoryPromptに条件フォームを使ってプロンプトを入れる
-    setGenerateStoryPrompt(
-      `${condition1}で${condition2}な子供向けな物語を全てひらがな書いて下さい。むかしむかし、あるところに...`
-    )
+    const generateStoryPrompt = `${condition1}で${condition2}の子供向けな物語を書いて下さい。むかしむかし、あるところに...`
 
     // 環境変数からエンドポイントURLを取得
     const apiUrl = process.env.REACT_APP_STORY_GENERATOR_API_URL
@@ -43,6 +47,15 @@ function InputForm() {
       const result = await response.json()
       console.log(result)
       setResponse(result.story)
+      console.log(
+        'responseに' +
+          result.story +
+          '(' +
+          response +
+          ')' +
+          'をセットしました！'
+      )
+      setPreviewEnabled(true)
 
       // Firestoreに保存
       const db = getFirestore()
@@ -71,28 +84,46 @@ function InputForm() {
   }
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="condition1">どんな？: </label>
+    <div className={styles.app}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.inputGroup}>
+          <label htmlFor="condition1" className={styles.label}>
+            どんなで？:{' '}
+          </label>
           <input
             type="text"
             id="condition1"
             value={condition1}
             onChange={(e) => setCondition1(e.target.value)}
+            className={styles.input}
           />
         </div>
-        <div>
-          <label htmlFor="condition2">何してる？: </label>
+        <div className={styles.inputGroup}>
+          <label htmlFor="condition2" className={styles.label}>
+            どのような？:{' '}
+          </label>
           <input
             type="text"
             id="condition2"
             value={condition2}
             onChange={(e) => setCondition2(e.target.value)}
+            className={styles.input}
           />
         </div>
-        <button type="submit">生成</button>
+        <button type="submit" className={styles.button}>
+          生成
+        </button>
+        {previewEnabled && (
+          <button
+            type="button"
+            onClick={handlePreview}
+            className={styles.button}
+          >
+            プレビューを表示
+          </button>
+        )}
       </form>
+      <textarea readOnly value={response} className={styles.textArea} />
     </div>
   )
 }
