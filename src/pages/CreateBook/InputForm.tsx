@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getFirestore, doc, setDoc } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 function InputForm() {
   const [condition1, setCondition1] = useState('')
@@ -38,14 +40,24 @@ function InputForm() {
       // レスポンスのJSONを解析し、ストーリーをステートに設定
       const result = await response.json()
       setResponse(result.story)
+
+      // Firestoreに保存
+      const db = getFirestore()
+      const auth = getAuth()
+      const user = auth.currentUser
+      if (user) {
+        const docRef = doc(db, "stories", user.uid)
+        await setDoc(docRef, { story: result.story })
+      } else {
+        // ユーザーがログインしていない場合のエラーハンドリング
+        console.error("No user is signed in!!!!")
+      }
     } catch (error) {
       // API呼び出しでエラーが発生した場合、コンソールにエラーを出力し、ステートにエラーメッセージを設定
       console.error('Error calling API:', error)
       console.error('Full error object:', JSON.stringify(error))
       setResponse('Error calling API.')
     }
-
-    // データをPreviewに渡したい
 
     // プレビューページへ遷移
     navigate('/create-book/preview')
