@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom';
 import InputForm from './InputForm'
 import Preview from './Preview'
 import TestApiCall from './TestApiCall'
@@ -11,13 +12,11 @@ function CreateBook() {
   }
 
   return (
-    <div className="App">
-      <h1>CreateBook.tsx</h1>
-      <InputForm />
+    <Routes>
+      <Route path="/" element={<InputForm />} />
       <TestApiCall />
-      <Preview />
-      <p>絵本生成ページのコンポーネントです。</p>
-    </div>
+      <Route path="preview" element={<Preview />} />
+    </Routes>
   )
 }
 
