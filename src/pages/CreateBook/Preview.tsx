@@ -32,16 +32,20 @@ function Preview() {
 
   return (
     <div className={styles.preview}>
+      {/* storyPartsをmap関数を使ってループし、各部分を表示します。
+      ただし、現在のページ番号とindexが一致する場合のみ表示され、それ以外は非表示にします。 */}
       {storyParts.map((part, index) => (
         <div
           key={index}
           className={styles.page}
           style={{ display: currentPage === index ? 'block' : 'none' }}
         >
+          {/* 各部分に対応する画像を表示します。 */}
+          <img src="/assets/dummy.png" alt="文章を説明する絵" />
           <p>{part}</p>
-          {/* ここで各パートに対応する絵を表示します */}
         </div>
       ))}
+      {/* 前へと次へのボタンを表示します。クリックするとそれぞれhandlePreviousPage、handleNextPage関数が実行されます。 */}
       <div className={styles.buttonContainer}>
         <button onClick={handlePreviousPage}>前へ</button>
         <button onClick={handleNextPage}>次へ</button>
