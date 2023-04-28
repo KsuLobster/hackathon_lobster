@@ -1,0 +1,34 @@
+.preview {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+.page {
+	position: absolute;
+	top: 60%;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-items: flex-end;
+	text-align: center;
+	padding: 20px;
+	padding-bottom: 20%;
+	box-sizing: border-box;
+	font-size: 24px;
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}

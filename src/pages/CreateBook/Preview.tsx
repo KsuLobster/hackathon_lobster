@@ -1,39 +1,51 @@
 // Preview.tsx
 import React, { useEffect, useState } from 'react'
-import { getFirestore, doc, getDoc } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
+import styles from './Preview.module.css'
 
 function Preview() {
-  const [story, setStory] = useState('')
-  console.log('Preview.tsxにきたよ!')
+  const [storyParts, setStoryParts] = useState<string[]>([]) // ストーリーの各部分
+  const [currentPage, setCurrentPage] = useState(0) // 現在のページ番号
+
+  // 次のページへ
+  const handleNextPage = () => {
+    if (currentPage < storyParts.length - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  // 前のページへ
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
 
   useEffect(() => {
-    const fetchStory = async () => {
-      const db = getFirestore()
-      const auth = getAuth()
-      const user = auth.currentUser
-      if (user) {
-        const docRef = doc(db, 'stories', user.uid)
-        const docSnap = await getDoc(docRef)
+    // ダミーデータを用意
+    const storyText =
+      'むかしむかし、あるところに赤ちゃんがいました。その赤ちゃんはとても元気で、いつも走り回っていました。しかし、ある日、彼は森の中で迷子になってしまいました。幸いなことに、彼は森の動物たちに助けられ、無事に家に帰ることができました。それからというもの、彼は森を大切にするようになりました。そして、森の動物たちとも仲良くなりました。'
 
-        if (docSnap.exists()) {
-          setStory(docSnap.data().story)
-        } else {
-          console.log('No such document!')
-        }
-      } else {
-        // ユーザーがログインしていない場合のエラーハンドリング
-        console.error('No user is signed in!!!!')
-      }
-    }
-    fetchStory()
+    // "。"で文章を分割し、配列を格納する
+    const parts = storyText.split('。')
+    setStoryParts(parts)
   }, [])
 
   return (
-    <div className="App">
-      <h1>Preview.tsx</h1>
-      <p>プレビューのコンポーネントです。</p>
-      <p>{story}</p>
+    <div className={styles.preview}>
+      {storyParts.map((part, index) => (
+        <div
+          key={index}
+          className={styles.page}
+          style={{ display: currentPage === index ? 'block' : 'none' }}
+        >
+          <p>{part}</p>
+          {/* ここで各パートに対応する絵を表示します */}
+        </div>
+      ))}
+      <div className={styles.buttonContainer}>
+        <button onClick={handlePreviousPage}>前へ</button>
+        <button onClick={handleNextPage}>次へ</button>
+      </div>
     </div>
   )
 }

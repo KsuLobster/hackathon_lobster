@@ -45,6 +45,7 @@ function InputForm() {
 
       // レスポンスのJSONを解析し、ストーリーをステートに設定
       const result = await response.json()
+      const storyParts = result.story.split('。') // 句点で分割
       console.log(result)
       setResponse(result.story)
       console.log(
