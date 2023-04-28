@@ -19,7 +19,7 @@ const Signup = (): JSX.Element => {
     console.log('登録', email, password)
     try {
       await createUserWithEmailAndPassword(auth, email, password)
-      navigate('/') // ここにナビゲーションを追加しました！
+      navigate('/home') // ここにナビゲーションを追加しました！
     } catch (error) {
       console.log(error)
     }
