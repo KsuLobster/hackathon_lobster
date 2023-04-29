@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Link } from 'react-router-dom'
@@ -21,6 +21,12 @@ function Signin() {
       .then((userCredential) => {
         const user = userCredential.user
         console.log('Success to login')
+
+        if (user?.displayName === null) {
+          updateProfile(user, {
+            displayName: '名無し',
+          })
+        }
         console.log(user)
       })
       .catch((error) => {

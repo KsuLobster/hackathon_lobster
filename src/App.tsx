@@ -10,6 +10,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import { FirebaseAppProvider } from 'reactfire'
 import { firebaseConfig } from './firebase'
+import Account from './pages/Account'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/rpg-book" element={<RpgBook />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
         <Footer />
       </Router>
