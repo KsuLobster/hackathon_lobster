@@ -9,7 +9,10 @@ const Signup = (): JSX.Element => {
   const [displayName, setDisplayName] = useState<string>('名無し')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [passworderror, setpasswordError] = useState<string>('')
+  const [emailerror, setemailError] = useState<string>('')
   const navigate = useNavigate() // ページ遷移用のフック
+  //firebaseと連携させている処理
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
   ): Promise<void> => {
