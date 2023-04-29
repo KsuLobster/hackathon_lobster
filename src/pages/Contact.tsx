@@ -1,4 +1,5 @@
 //import '*'
+import './Contact.css'
 import {
   Container,
   Stack,
@@ -68,8 +69,14 @@ function Contact() {
   }
 
   return (
-    <div className="App">
-      <p>お問い合わせページのコンポーネントです。</p>
+    <div className={'app-container'}>
+      <h1>お問い合わせ</h1>
+      <p>
+        こちらはお問い合わせページです。
+        <br />
+        使い方に関しては、使い方のページを、
+        ご質問に関しては、よくある質問のページを先にご覧ください。
+      </p>
       <Container maxWidth="xs">
         <Stack
           component="form"
