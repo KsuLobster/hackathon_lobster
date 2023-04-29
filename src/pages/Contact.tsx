@@ -1,5 +1,5 @@
 //import '*'
-import { ChangeEvent, useState } from 'react'
+import './Contact.css'
 import {
   Container,
   Stack,
@@ -17,7 +17,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 // 入力値の定義をする
 type Inputs = {
   radioContent: string
-  textAdress: string
+  textAddress: string
   textMatter: string
 }
 
@@ -26,7 +26,7 @@ function Contact() {
   const { control, getValues, handleSubmit } = useForm<Inputs>({
     defaultValues: {
       radioContent: '',
-      textAdress: '',
+      textAddress: '',
       textMatter: '',
     },
   })
@@ -36,14 +36,14 @@ function Contact() {
     radioContent: {
       validate: (value: string) => value !== '' || 'いずれかを選択してください',
     },
-    textAdress: {
+    textAddress: {
       validate: (val: string) => {
         if (val == '') {
           return 'メールアドレスを入力してください。'
         }
         if (
           !val.match(
-            /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+\.[A-Za-z0-9]+$/
+            /^[A-Za-z0-9][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\.[A-Za-z0-9]+$/
           )
         ) {
           return '正しいメールアドレスを入力してください'
@@ -64,7 +64,7 @@ function Contact() {
   // サブミット時の処理を作成する
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     console.log(`submit: ${data.radioContent}`)
-    console.log(`submit: ${data.textAdress}`)
+    console.log(`submit: ${data.textAddress}`)
     console.log(`submit: ${data.textMatter}`)
   }
 
@@ -115,9 +115,9 @@ function Contact() {
                 </RadioGroup>
                 {getValues('radioContent') != '' && (
                   <Controller
-                    name="textAdress"
+                    name="textAddress"
                     control={control}
-                    rules={validationRules.textAdress}
+                    rules={validationRules.textAddress}
                     render={({ field, fieldState }) => (
                       <TextField
                         {...field}
@@ -187,7 +187,7 @@ function Contact() {
                   <Button variant="contained" type="submit">
                     送信する
                   </Button>
-                )}{' '}
+                )}
                 <FormHelperText>{fieldState.error?.message}</FormHelperText>
               </FormControl>
             )}
