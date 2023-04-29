@@ -1,5 +1,4 @@
 //import '*'
-import './Contact.css'
 import {
   Container,
   Stack,
@@ -75,7 +74,6 @@ function Contact() {
         <Stack
           component="form"
           noValidate
-          justifyContent="center"
           onSubmit={handleSubmit(onSubmit)}
           spacing={2}
           sx={{ m: 2, width: '40ch' }}
@@ -123,6 +121,7 @@ function Contact() {
                         {...field}
                         type="text"
                         label="メールアドレス"
+                        style={{ marginTop: 20 }}
                         error={fieldState.invalid}
                         helperText={fieldState.error?.message}
                       />
@@ -141,6 +140,7 @@ function Contact() {
                         label="具体的な質問の内容を入力してください"
                         multiline
                         rows={4}
+                        style={{ marginTop: 30 }}
                         error={fieldState.invalid}
                         helperText={fieldState.error?.message}
                       />
@@ -159,6 +159,7 @@ function Contact() {
                         label="具体的な意見・提案の内容を入力してください"
                         multiline
                         rows={4}
+                        style={{ marginTop: 30 }}
                         error={fieldState.invalid}
                         helperText={fieldState.error?.message}
                       />
@@ -177,6 +178,7 @@ function Contact() {
                         label="具体的なお問い合わせの内容を入力してください"
                         multiline
                         rows={4}
+                        style={{ marginTop: 30 }}
                         error={fieldState.invalid}
                         helperText={fieldState.error?.message}
                       />
@@ -184,7 +186,11 @@ function Contact() {
                   />
                 )}
                 {getValues('radioContent') != '' && (
-                  <Button variant="contained" type="submit">
+                  <Button
+                    style={{ marginTop: 30 }}
+                    variant="contained"
+                    type="submit"
+                  >
                     送信する
                   </Button>
                 )}
