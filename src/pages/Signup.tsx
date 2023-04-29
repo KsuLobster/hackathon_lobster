@@ -1,4 +1,5 @@
 import React, { useState, FormEvent, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom' // ここにナビゲーションモジュール追加！
 import 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
@@ -9,7 +10,6 @@ const Signup = (): JSX.Element => {
   const [password, setPassword] = useState<string>('')
   const [passworderror, setpasswordError] = useState<string>('')
   const [emailerror, setemailError] = useState<string>('')
-
   const navigate = useNavigate() // ページ遷移用のフック
   //firebaseと連携させている処理
   const handleSubmit = async (
@@ -19,7 +19,15 @@ const Signup = (): JSX.Element => {
     console.log('登録', email, password)
     try {
       await createUserWithEmailAndPassword(auth, email, password)
-      navigate('/home') // ここにナビゲーションを追加しました！
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      // ユーザー登録が成功した後、userCredential.userを使ってユーザー情報を取得できる
+      const user = userCredential.user
+
+      navigate('/create-book')
     } catch (error) {
       console.log(error)
     }
