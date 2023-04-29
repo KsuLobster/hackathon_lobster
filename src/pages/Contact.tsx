@@ -77,13 +77,13 @@ function Contact() {
         使い方に関しては、使い方のページを、
         ご質問に関しては、よくある質問のページを先にご覧ください。
       </p>
-      <Container maxWidth="xs">
+      <Container maxWidth="sm">
         <Stack
           component="form"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
           spacing={2}
-          sx={{ m: 2, width: '40ch' }}
+          sx={{ m: 2, width: '50ch' }}
         >
           <Controller
             name="radioContent"
@@ -97,6 +97,7 @@ function Contact() {
                 <RadioGroup
                   aria-labelledby="radio-buttons-group-label"
                   value={field.value}
+                  row
                   name="content"
                 >
                   <FormControlLabel
