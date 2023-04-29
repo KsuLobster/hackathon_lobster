@@ -4,7 +4,13 @@ import styles from './Home.module.css'
 function Home() {
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
+      <h1 className={styles.top_title}>
+        <span className={styles.big}>理想</span>の
+        <span className={styles.big}>絵本</span>をつくります。
+        <br />
+        <span className={styles.big}>AI</span>が。
+      </h1>
+      <div className={styles.main}>
         {/* ナビゲーションセクション */}
         <section className={styles.navigation}>
           {/* 「絵本生成」へのリンク */}
@@ -18,7 +24,7 @@ function Home() {
             <h2>絵本RPG</h2>
           </Link>
         </section>
-      </main>
+      </div>
     </div>
   )
 }
