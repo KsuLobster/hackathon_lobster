@@ -1,0 +1,91 @@
+:root {
+  --blue: #3e75ff;
+  --gray: rgb(201, 201, 201);
+}
+.app {
+  display: grid;
+  place-content: center;
+  /* padding: 36px; */
+  min-height: 462px;
+  height: calc(100vh - 72px - 96px);
+}
+.form_container {
+  /* margin-top: -64px; */
+  width: 300px;
+  box-shadow: 0 2px 4px rgb(201, 201, 201);
+  border-radius: 16px;
+  padding: 20px 24px 24px 24px;
+  transition: box-shadow 0.3s;
+}
+.form_container:hover {
+  box-shadow: 0 8px 10px var(--gray);
+}
+h1 {
+  margin: 0;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.form :is(input, button) {
+  padding: 8px;
+  border-radius: 8px;
+}
+.form input {
+  border: 1px solid rgb(201, 201, 201);
+  font-family: monospace;
+  width: 100%;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+.form input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue) inset;
+}
+.input_label {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 4px;
+}
+.form_submit {
+  cursor: pointer;
+  background: #3e75ff;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+.notice {
+  font-size: 12px;
+  text-decoration: none;
+  color: gray;
+  align-self: start;
+}
+a.notice:hover {
+  text-decoration: underline;
+}
+hr {
+  background: var(--gray);
+  height: 1px;
+  border-radius: 999px;
+  border: none;
+  margin: 12px 0;
+}
+.signup_nav_form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.link_signup {
+  padding: 8px;
+  box-shadow: 0 0 0 2px var(--blue) inset;
+  color: var(--blue);
+  text-align: center;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  text-decoration: none;
+  font-weight: bold;
+}

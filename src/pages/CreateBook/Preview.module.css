@@ -1,0 +1,95 @@
+/*
+アプリケーションの全体的なスタイルを制御する。
+親要素の位置を相対位置に設定し、
+高さと幅をビューポートの高さと幅にそれぞれ設定する。
+さらに、overflowをhiddenに設定して、
+この要素の外側にある内容を非表示にする。
+*/
+.preview {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+/*
+各ページのスタイルを制御する。
+親要素からの相対位置を設定し、
+高さと幅を親要素の100％に設定する。
+flexboxを使って子要素を列方向に配置し、中央揃えにする。
+*/
+.page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+/*
+各ページの画像のスタイルを制御する。
+最大の幅と高さをそれぞれ100％と50％に設定し、
+画像がそのコンテナを超えないようにする。
+また、object-fitをcontainに設定して、
+画像がその元の比率を保ちつつ、コンテナに合うように調整する。
+*/
+.page img {
+	max-width: 100%;
+	max-height: 50%;
+	object-fit: contain;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/*
+各ページのテキストのスタイルを制御する。
+テキストを親要素の下部に配置し、幅を親要素の100％に設定する。
+また、影をつけてテキストを見やすくし、テキストを中央揃えにする。
+*/
+.page p {
+	position: absolute;
+	bottom: 20%;
+	width: 100%;
+	font-size: 10px;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	color: blue;
+	text-align: center;
+}
+
+/*
+ボタンのコンテナのスタイルを制御する。
+flexboxを使って子要素を並べ、親要素の下部に固定する。
+さらに、幅を親要素の100％に設定する。
+*/
+.buttonContainer {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+/* 画面幅が600px以上のデバイスに対してのスタイルを適用 */
+@media (min-width: 600px) {
+	.page p {
+		font-size: 2rem;
+	}
+}
+
+/* 画面幅が900px以上のデバイスに対してのスタイルを適用 */
+@media (min-width: 900px) {
+	.page p {
+		font-size: 2.5rem;
+	}
+}

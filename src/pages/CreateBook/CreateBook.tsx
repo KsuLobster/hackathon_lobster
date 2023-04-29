@@ -1,12 +1,15 @@
+import { Route, Routes } from 'react-router-dom'
+import InputForm from './InputForm'
+import Preview from './Preview'
 import TestApiCall from './TestApiCall'
 
 function CreateBook() {
   return (
-    <div className="App">
-      <h1>CreateBook.tsx</h1>
-      <TestApiCall />
-      <p>絵本生成ページのコンポーネントです。</p>
-    </div>
+    <Routes>
+      <Route path="/" element={<InputForm />} />
+      <Route path="/" element={<TestApiCall />} />
+      <Route path="preview" element={<Preview />} />
+    </Routes>
   )
 }
 
