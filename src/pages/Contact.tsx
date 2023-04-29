@@ -17,6 +17,9 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 // 入力値の定義をする
 type Inputs = {
   radioContent: string
+  textFamilyName: string
+  textFirstName: string
+  textTelePhoneNumber: string
   textAddress: string
   textMatter: string
 }
@@ -26,6 +29,9 @@ function Contact() {
   const { control, getValues, handleSubmit } = useForm<Inputs>({
     defaultValues: {
       radioContent: '',
+      textFamilyName: '',
+      textFirstName: '',
+      textTelePhoneNumber: '',
       textAddress: '',
       textMatter: '',
     },
@@ -35,6 +41,12 @@ function Contact() {
   const validationRules = {
     radioContent: {
       validate: (value: string) => value !== '' || 'いずれかを選択してください',
+    },
+    textFamilyName: {
+      validate: (value: string) => value !== '' || '性を入力してください',
+    },
+    textFirstName: {
+      validate: (value: string) => value !== '' || '名を入力してください',
     },
     textAddress: {
       validate: (val: string) => {
@@ -92,7 +104,7 @@ function Contact() {
             render={({ field, fieldState }) => (
               <FormControl error={fieldState.invalid}>
                 <FormLabel id="radio-buttons-group-lavel">
-                  お問い合わせ内容
+                  お問い合わせ内容の種類
                 </FormLabel>
                 <RadioGroup
                   aria-labelledby="radio-buttons-group-label"
@@ -119,6 +131,46 @@ function Contact() {
                     label="その他"
                   />
                 </RadioGroup>
+                <div className={'form-input-name'}>
+                  {getValues('radioContent') != '' && (
+                    <Controller
+                      name="textFamilyName"
+                      control={control}
+                      rules={validationRules.textFamilyName}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          type="text"
+                          label="姓"
+                          placeholder="絵本"
+                          style={{ marginTop: 20 }}
+                          sx={{ m: 0, width: '35ch' }}
+                          error={fieldState.invalid}
+                          helperText={fieldState.error?.message}
+                        />
+                      )}
+                    />
+                  )}
+                  {getValues('radioContent') != '' && (
+                    <Controller
+                      name="textFirstName"
+                      control={control}
+                      rules={validationRules.textFirstName}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          type="text"
+                          label="名"
+                          placeholder="太郎"
+                          style={{ marginTop: 20 }}
+                          sx={{ m: 0, width: '35ch' }}
+                          error={fieldState.invalid}
+                          helperText={fieldState.error?.message}
+                        />
+                      )}
+                    />
+                  )}
+                </div>
                 {getValues('radioContent') != '' && (
                   <Controller
                     name="textAddress"
@@ -129,6 +181,7 @@ function Contact() {
                         {...field}
                         type="text"
                         label="メールアドレス"
+                        placeholder="aaa@bbb.ccc"
                         style={{ marginTop: 20 }}
                         error={fieldState.invalid}
                         helperText={fieldState.error?.message}
@@ -145,7 +198,8 @@ function Contact() {
                       <TextField
                         {...field}
                         type="text"
-                        label="具体的な質問の内容を入力してください"
+                        label="お問い合わせ内容"
+                        placeholder="具体的な質問の内容を入力してください"
                         multiline
                         rows={4}
                         style={{ marginTop: 30 }}
@@ -164,7 +218,8 @@ function Contact() {
                       <TextField
                         {...field}
                         type="text"
-                        label="具体的な意見・提案の内容を入力してください"
+                        label="お問い合わせ内容"
+                        placeholder="具体的な意見・提案の内容を入力してください"
                         multiline
                         rows={4}
                         style={{ marginTop: 30 }}
@@ -183,7 +238,8 @@ function Contact() {
                       <TextField
                         {...field}
                         type="text"
-                        label="具体的なお問い合わせの内容を入力してください"
+                        label="お問い合わせ内容"
+                        placeholder="具体的なお問い合わせの内容を入力してください"
                         multiline
                         rows={4}
                         style={{ marginTop: 30 }}
