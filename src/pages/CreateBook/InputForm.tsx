@@ -26,35 +26,36 @@ function InputForm() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // 非同期処理になるためasyncを追加
     e.preventDefault()
 
-    // ユーザーがログインしていない場合、早期に関数を終了
     if (!currentUser) {
       console.error('サインインできてないよ！')
       return
     }
 
-    // generateStoryPromptに条件フォームを使ってプロンプトを入れる
-    const generateStoryPrompt = `${condition1}で${condition2}の子供向けな物語を書いて下さい。むかしむかし、あるところに...`
-
-    // 環境変数からエンドポイントURLを取得
+    // OpenAI APIを呼び出し、絵本の内容を生成する処理をここに書く
+    const generateStoryPrompt = `${condition1}で${condition2}の子供向けな物語を書いて下さい。`
     const apiUrl = process.env.REACT_APP_STORY_GENERATOR_API_URL
 
-    // OpenAI APIを呼び出し、絵本の内容を生成する処理をここに書く
+    if (!apiUrl) {
+      console.error(
+        'REACT_APP_STORY_GENERATOR_API_URL environment variable is not defined'
+      )
+      return
+    }
+
     try {
-      // APIへのリクエストを送信
-      const response = await fetch(apiUrl as string, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: generateStoryPrompt,
+          message: generateStoryPrompt,
+          chatHistory: [], // chatHistoryを空の配列で初期化
         }),
       })
 
-      // レスポンスが正常でない場合、エラーをスロー
       if (!response.ok) {
         throw new Error('Error calling API.')
       }
@@ -76,11 +77,10 @@ function InputForm() {
 
       // Firestoreに保存
       const db = getFirestore()
-
       const storiesCollection = collection(db, 'stories')
       await addDoc(storiesCollection, {
         userId: currentUser.uid,
-        story: result.story,
+        story: result.message, // Firestoreに保存するstoryをresult.messageに変更
       })
     } catch (error) {
       // API呼び出しでエラーが発生した場合、コンソールにエラーを出力し、ステートにエラーメッセージを設定
