@@ -91,7 +91,7 @@ function Header() {
             }}
           >
             <div className={style.user_name}>
-              {user ? user?.displayName || '名無し' : 'ログイン'}
+              {user ? user?.displayName : 'ログイン'}
             </div>
             {user && (
               <div className={style.user_icon}>
