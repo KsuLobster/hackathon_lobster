@@ -19,7 +19,6 @@ type Inputs = {
   radioContent: string
   textFamilyName: string
   textFirstName: string
-  textTelePhoneNumber: string
   textAddress: string
   textMatter: string
 }
@@ -31,7 +30,6 @@ function Contact() {
       radioContent: '',
       textFamilyName: '',
       textFirstName: '',
-      textTelePhoneNumber: '',
       textAddress: '',
       textMatter: '',
     },
