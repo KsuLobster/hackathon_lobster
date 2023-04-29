@@ -82,7 +82,6 @@ function InputForm() {
         userId: currentUser.uid,
         story: result.story,
       })
-      console.log('通ったよ！')
     } catch (error) {
       // API呼び出しでエラーが発生した場合、コンソールにエラーを出力し、ステートにエラーメッセージを設定
       console.error('Error calling API:', error)

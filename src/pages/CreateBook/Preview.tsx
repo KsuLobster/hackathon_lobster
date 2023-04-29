@@ -1,12 +1,15 @@
 // Preview.tsx
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import { jsPDF } from 'jspdf'
+import html2canvas from 'html2canvas'
 import styles from './Preview.module.css'
 
 function Preview() {
   const [storyParts, setStoryParts] = useState<string[]>([]) // ストーリーの各部分
   const [currentPage, setCurrentPage] = useState(0) // 現在のページ番号
   const location = useLocation()
+  const previewRef = useRef<HTMLDivElement | null>(null)
 
   // 次のページへ
   const handleNextPage = () => {
@@ -20,6 +23,38 @@ function Preview() {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1)
     }
+  }
+
+  // PDFを生成・ダウンロード
+  const handleDownloadPdf = async () => {
+    if (!previewRef.current) return // previewRef.currentがnullでないことを確認
+
+    const doc = new jsPDF('p', 'px', [
+      previewRef.current.clientWidth,
+      previewRef.current.clientHeight,
+    ])
+
+    for (let i = 0; i < storyParts.length; i++) {
+      setCurrentPage(i)
+      await new Promise((r) => setTimeout(r, 200)) // レンダリングが完了するまで待つ
+      const canvas = await html2canvas(previewRef.current)
+      const imgData = canvas.toDataURL('image/png')
+      doc.addImage(
+        imgData,
+        'PNG',
+        0,
+        0,
+        doc.internal.pageSize.getWidth(),
+        doc.internal.pageSize.getHeight()
+      ) // 修正: 幅と高さを指定
+      if (i < storyParts.length - 1) {
+        doc.addPage([
+          previewRef.current.clientWidth,
+          previewRef.current.clientHeight,
+        ])
+      }
+    }
+    doc.save('story.pdf') // PDFをダウンロード
   }
 
   useEffect(() => {
@@ -50,6 +85,7 @@ function Preview() {
       <div className={styles.buttonContainer}>
         <button onClick={handlePreviousPage}>前へ</button>
         <button onClick={handleNextPage}>次へ</button>
+        <button onClick={handleDownloadPdf}>PDFをダウンロード</button>
       </div>
     </div>
   )
