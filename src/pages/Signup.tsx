@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom' // ここにナビゲーション
 import 'firebase/auth'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
-import { useNavigate } from 'react-router-dom'
 
 const Signup = (): JSX.Element => {
   const [email, setEmail] = useState<string>('')
