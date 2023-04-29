@@ -1,10 +1,12 @@
 // Preview.tsx
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import styles from './Preview.module.css'
 
 function Preview() {
   const [storyParts, setStoryParts] = useState<string[]>([]) // ストーリーの各部分
   const [currentPage, setCurrentPage] = useState(0) // 現在のページ番号
+  const location = useLocation()
 
   // 次のページへ
   const handleNextPage = () => {
@@ -21,9 +23,8 @@ function Preview() {
   }
 
   useEffect(() => {
-    // ダミーデータを用意
-    const storyText =
-      'むかしむかし、あるところに赤ちゃんがいました。その赤ちゃんはとても元気で、いつも走り回っていました。しかし、ある日、彼は森の中で迷子になってしまいました。幸いなことに、彼は森の動物たちに助けられ、無事に家に帰ることができました。それからというもの、彼は森を大切にするようになりました。そして、森の動物たちとも仲良くなりました。'
+    // InputFormから生成データを受け取る
+    const storyText = location.state.response
 
     // "。"で文章を分割し、配列を格納する
     const parts = storyText.split('。')
