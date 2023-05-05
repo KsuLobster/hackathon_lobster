@@ -34,7 +34,10 @@ function InputForm() {
     }
 
     // OpenAI APIを呼び出し、絵本の内容を生成する処理をここに書く
-    const generateStoryPrompt = `${condition1}で${condition2}の子供向けな物語を書いて下さい。`
+    const generateStoryPrompt = `以下の条件を満たす子供向けな物語を書いて下さい。
+                                ・${condition1}
+                                ・${condition2}
+                                ・ひらがな`
     const apiUrl = process.env.REACT_APP_STORY_GENERATOR_API_URL
 
     if (!apiUrl) {
