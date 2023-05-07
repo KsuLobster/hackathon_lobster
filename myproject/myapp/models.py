@@ -1,5 +1,7 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User #デフォルトにあるものを使用
+from django.contrib.auth.models import AbstractUser #Userをカスタムするため
 
 # Create your models here.
 """
@@ -13,23 +15,27 @@ on_delete=models.CASCADE は、親モデルが削除されたときに、
 それに関連する子モデルも削除されるように指定
 """
 
-class Book(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	title = models.CharField(max_length=255)
-	content = models.TextField()
+class CustomUser(AbstractUser):
 	created_at = models.DateTimeField(auto_now_add=True)
-	updated_at = models.DateTimeField(auto_now=True)
 
-	def __str__(self):
-		return self.title
+class Book(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
 
 class Subscription(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	subscription_type = models.CharField(max_length=255)
-	start_date = models.DateField()
-	end_date = models.DateField()
-	created_at = models.DateTimeField(auto_now_add=True)
-	updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    subscription_type = models.CharField(max_length=255)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-	def __str__(self):
-		return self.subscription_type
+    def __str__(self):
+        return self.subscription_type
